@@ -1,0 +1,159 @@
+{
+  "mode": "ai",
+  "project_title": "CrewAI Blog Crew",
+  "short_description": "A beginner-friendly multi-agent CrewAI project designed to automate the generation of high-quality blog posts from a given topic, showcasing a full-stack architecture.",
+  "domain_summary": "This project operates in the content creation and marketing domain, specifically targeting the automation of blog post writing. It leverages AI agents to perform research, strategize content, draft articles, and refine them, simulating a small editorial team. The goal is to produce ready-to-publish blog content efficiently.",
+  "user_persona": "The primary user is a 'Content Manager' or 'Small Business Owner' who needs to regularly publish blog posts on various topics but lacks the time or resources for manual content creation. They are looking for an AI-powered assistant to generate drafts that can be quickly reviewed and published.",
+  "architecture_notes": [
+    "The architecture is designed for a beginner-friendly approach, balancing a full-stack representation with focused complexity. The FastAPI backend is minimal, primarily acting as a wrapper for the CrewAI system. The React frontend provides a simple input form and display area, demonstrating how to interact with an AI service. Docker ensures environmental consistency and ease of deployment, a crucial skill for portfolios. The core complexity is concentrated within the CrewAI agent design and orchestration, making it easy to understand the multi-agent paradigm. This setup offers practical portfolio value by demonstrating skills in AI orchestration, API development, UI integration, and containerization."
+  ],
+  "backend_modules": [
+    "Crew Orchestrator: Python module containing the CrewAI agents, tasks, and crew definition. Exposes a 'run_crew' function.",
+    "FastAPI Endpoints: API routes for 'trigger_blog_generation', 'get_crew_status', and 'get_blog_post'.",
+    "Result Storage: Simple mechanism (e.g., in-memory dictionary or basic file storage for a beginner project) to store generated blog posts and their status."
+  ],
+  "frontend_features": [
+    "Topic Input Form: A text input field for users to provide the desired blog post topic.",
+    "Generate Button: Triggers the CrewAI process via the FastAPI backend.",
+    "Status Display: Shows the current stage of the blog generation process (e.g., 'Researching...', 'Drafting...', 'Editing...', 'Completed!').",
+    "Blog Post Viewer: Displays the final generated blog post in a readable format.",
+    "Error/Success Notifications: Provides feedback to the user on the operation status."
+  ],
+  "data_sources": [
+    "Web Search (e.g., Tavily, Serper): Primary data source for the Research Analyst to gather information and facts relevant to the blog topic.",
+    "LLM Internal Knowledge: Agents leverage their underlying Large Language Model's general knowledge for common sense, writing style, and structure."
+  ],
+  "testing_strategy": [
+    "Unit Tests (Python): Test individual agent tools (e.g., the search tool's functionality) and core utility functions.",
+    "Agent Task Tests: Verify that individual agent tasks produce expected outputs given specific inputs (mocked tool responses).",
+    "Integration Tests (Crew): Run the entire CrewAI workflow with predefined topics and assert that a blog post is generated, focusing on agent collaboration.",
+    "API Tests (FastAPI): Test FastAPI endpoints to ensure they correctly trigger the crew and return appropriate responses.",
+    "End-to-End Tests (Playwright/Cypress): Simulate user interaction from topic input to blog post display in the frontend."
+  ],
+  "starter_questions": [
+    "What topic do you want the blog post to be about?",
+    "Are there any specific keywords or angles you'd like to include?",
+    "What is the target audience for this blog post?",
+    "What is the desired tone (e.g., informative, casual, professional)?",
+    "What should be the approximate length (e.g., short, medium, long)?"
+  ],
+  "workflow_steps": [
+    "1. **User Input:** User provides a blog post topic (e.g., 'The Benefits of Remote Work').",
+    "2. **Research Phase:** The 'Research Analyst' agent uses web search tools to gather relevant information, statistics, and common talking points on the given topic.",
+    "3. **Outline Generation:** The 'Content Strategist' agent takes the research findings and crafts a detailed blog post outline, including main sections, sub-sections, and key points to cover.",
+    "4. **Drafting Phase:** The 'Blog Post Writer' agent uses the outline and research data to generate the first draft of the blog post, focusing on engaging content and clear explanations.",
+    "5. **Review and Refine:** The 'Editor' agent reviews the draft for grammatical errors, clarity, coherence, tone consistency, and overall quality, suggesting improvements.",
+    "6. **Final Output:** The refined blog post is presented to the user through the frontend."
+  ],
+  "business_rules": [
+    "All generated blog posts must be original and not plagiarized.",
+    "Information must be factual and referenced where appropriate (implicitly handled by LLM synthesis from search results).",
+    "The tone of the blog post should be consistent with the user's request (default to informative if not specified).",
+    "Blog posts should ideally be between 500-1000 words (medium length) unless otherwise specified.",
+    "Output must be in Markdown format for easy readability and integration."
+  ],
+  "sample_documents": [
+    {
+      "filename": "blog_topic_example.txt",
+      "content": "The Impact of Artificial Intelligence on Modern Education"
+    },
+    {
+      "filename": "research_summary_example.md",
+      "content": "### Research Summary for 'The Impact of AI on Modern Education'\n\n**Key Findings:**\n-   **Personalized Learning:** AI-powered platforms can adapt to individual student paces and learning styles, offering customized content and feedback. Examples: Khan Academy, Duolingo.\n-   **Automated Grading & Feedback:** AI tools can grade assignments (especially multiple-choice, short answer) and provide instant feedback, freeing up educators' time. Challenges with essay grading remain.\n-   **Administrative Efficiency:** AI can assist with scheduling, resource allocation, and student performance prediction, optimizing school operations.\n-   **Access & Equity:** AI can break down barriers by providing educational resources to remote areas or students with special needs, though digital divide issues persist.\n-   **Ethical Concerns:** Data privacy, algorithmic bias, job displacement for educators, and over-reliance on technology are significant concerns.\n-   **Future Trends:** AI tutors, VR/AR enhanced learning, and predictive analytics for student success.\n\n**Potential Angles:**\n1.  AI as an 'assistant' to teachers, not a replacement.\n2.  The dual challenge of leveraging AI while addressing ethical implications.\n3.  Preparing students for an AI-driven future through AI education itself.\n\n**Sources:**\n-   UNESCO reports on AI in education.\n-   EdTech review journals.\n-   Articles from reputable universities on AI research."
+    },
+    {
+      "filename": "blog_outline_example.md",
+      "content": "## Blog Post Outline: The Impact of Artificial Intelligence on Modern Education\n\n**I. Introduction**\n    *   Hook: Rapid advancement of AI and its societal implications.\n    *   Briefly introduce AI's emerging role in education.\n    *   Thesis: AI is transforming education by enabling personalization, automating tasks, and improving access, but also presents ethical challenges.\n\n**II. AI as a Catalyst for Personalized Learning**\n    *   A. Adaptive Learning Platforms\n        *   Tailoring content to individual student pace.\n        *   Examples: AI-driven tutors, adaptive quizzes.\n    *   B. Intelligent Tutoring Systems\n        *   Providing instant, targeted feedback.\n        *   Addressing specific learning gaps.\n\n**III. Enhancing Educator Efficiency and Administrative Tasks**\n    *   A. Automated Grading and Assessment\n        *   Reducing teacher workload.\n        *   Focusing teacher time on complex interactions.\n    *   B. Administrative Optimization\n        *   Scheduling, resource management, student data analysis.\n        *   Predictive analytics for student success.\n\n**IV. Expanding Access and Addressing Equity**\n    *   A. Bridging Geographic and Socioeconomic Gaps\n        *   Online learning platforms reaching remote students.\n        *   Language translation and accessibility features.\n    *   B. Support for Diverse Learners\n        *   Tools for students with disabilities.\n        *   Customized learning paths.\n\n**V. Challenges and Ethical Considerations**\n    *   A. Data Privacy and Security\n        *   Protection of student data.\n        *   Transparency in data usage.\n    *   B. Algorithmic Bias and Fairness\n        *   Ensuring equitable outcomes for all students.\n        *   Avoiding reinforcement of existing biases.\n    *   C. The Human Element\n        *   Maintaining the irreplaceable role of teachers.\n        *   Preventing over-reliance on technology.\n\n**VI. Conclusion**\n    *   Recap: AI's transformative potential and the need for thoughtful integration.\n    *   Future Outlook: The continued evolution of AI in education.\n    *   Call to Action: Encourage stakeholders to collaborate on ethical and effective AI deployment in learning environments."
+    }
+  ],
+  "tool_catalog": [
+    {
+      "name": "SearchTool",
+      "description": "A tool that performs web searches to gather information. Ideal for research and fact-finding. Uses a backend search API like Tavily or Serper for real-time data."
+    }
+  ],
+  "agent_plan": [
+    {
+      "name": "Architecture Agent",
+      "role": "Define app boundaries, data flow, runtime stack, and integration points.",
+      "outputs": [
+        "The architecture is designed for a beginner-friendly approach, balancing a full-stack representation with focused complexity. The FastAPI backend is minimal, primarily acting as a wrapper for the CrewAI system. The React frontend provides a simple input form and display area, demonstrating how to interact with an AI service. Docker ensures environmental consistency and ease of deployment, a crucial skill for portfolios. The core complexity is concentrated within the CrewAI agent design and orchestration, making it easy to understand the multi-agent paradigm. This setup offers practical portfolio value by demonstrating skills in AI orchestration, API development, UI integration, and containerization."
+      ]
+    },
+    {
+      "name": "Backend Agent",
+      "role": "Design FastAPI modules, service contracts, validation, and error handling.",
+      "outputs": [
+        "Crew Orchestrator: Python module containing the CrewAI agents, tasks, and crew definition. Exposes a 'run_crew' function.",
+        "FastAPI Endpoints: API routes for 'trigger_blog_generation', 'get_crew_status', and 'get_blog_post'.",
+        "Result Storage: Simple mechanism (e.g., in-memory dictionary or basic file storage for a beginner project) to store generated blog posts and their status."
+      ]
+    },
+    {
+      "name": "Frontend Agent",
+      "role": "Design React screens, state flow, controls, and user feedback states.",
+      "outputs": [
+        "Topic Input Form: A text input field for users to provide the desired blog post topic.",
+        "Generate Button: Triggers the CrewAI process via the FastAPI backend.",
+        "Status Display: Shows the current stage of the blog generation process (e.g., 'Researching...', 'Drafting...', 'Editing...', 'Completed!').",
+        "Blog Post Viewer: Displays the final generated blog post in a readable format.",
+        "Error/Success Notifications: Provides feedback to the user on the operation status."
+      ]
+    },
+    {
+      "name": "Database Agent",
+      "role": "Design persistence models, sample data, indexes, and audit records.",
+      "outputs": [
+        "Run history",
+        "Source document metadata",
+        "Generated workflow audit records"
+      ]
+    },
+    {
+      "name": "Testing Agent",
+      "role": "Define contract tests, smoke tests, and generated project validation.",
+      "outputs": [
+        "Unit Tests (Python): Test individual agent tools (e.g., the search tool's functionality) and core utility functions.",
+        "Agent Task Tests: Verify that individual agent tasks produce expected outputs given specific inputs (mocked tool responses).",
+        "Integration Tests (Crew): Run the entire CrewAI workflow with predefined topics and assert that a blog post is generated, focusing on agent collaboration.",
+        "API Tests (FastAPI): Test FastAPI endpoints to ensure they correctly trigger the crew and return appropriate responses.",
+        "End-to-End Tests (Playwright/Cypress): Simulate user interaction from topic input to blog post display in the frontend."
+      ]
+    },
+    {
+      "name": "DevOps Agent",
+      "role": "Define environment variables, Docker workflow, and repository packaging.",
+      "outputs": [
+        "Docker-ready project",
+        "Environment sample file",
+        "GitHub repository upload"
+      ]
+    },
+    {
+      "name": "Reviewer Agent",
+      "role": "Review the generated plan for completeness, security, and portfolio quality.",
+      "outputs": [
+        "1. **User Input:** User provides a blog post topic (e.g., 'The Benefits of Remote Work').",
+        "2. **Research Phase:** The 'Research Analyst' agent uses web search tools to gather relevant information, statistics, and common talking points on the given topic.",
+        "3. **Outline Generation:** The 'Content Strategist' agent takes the research findings and crafts a detailed blog post outline, including main sections, sub-sections, and key points to cover.",
+        "4. **Drafting Phase:** The 'Blog Post Writer' agent uses the outline and research data to generate the first draft of the blog post, focusing on engaging content and clear explanations.",
+        "5. **Review and Refine:** The 'Editor' agent reviews the draft for grammatical errors, clarity, coherence, tone consistency, and overall quality, suggesting improvements.",
+        "6. **Final Output:** The refined blog post is presented to the user through the frontend."
+      ]
+    }
+  ],
+  "model_provider": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "fallback_reason": "OpenAI limit reached. Automatically switched to Gemini.",
+  "architecture": "CrewAI Research Operations Crew",
+  "architecture_template_id": 52,
+  "architecture_template_path": "templates/crewai-multi-agent/crewai-research-operations-crew",
+  "architecture_description": "CrewAI Research Operations Crew for CrewAI-style role-based research delegation.",
+  "validation_pipeline": [
+    "pytest",
+    "npm install",
+    "npm run build",
+    "docker compose config",
+    "docker compose build"
+  ]
+}
